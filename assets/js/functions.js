@@ -76,6 +76,25 @@ $( document ).ready(function() {
     updateContent(curPos, nextPos, lastItem);
   });
 
+  // clicking 'Here' anchor to jump to Contact / Personal section
+  $('.contact--goto').click(function(e){
+    e.preventDefault();
+    var curActive = $('.side-nav').find('.is-active'),
+        curPos = $('.side-nav').children().index(curActive),
+        lastItem = $('.side-nav').children().length - 1,
+        // find the index of the main-content child that contains #contact
+        targetSection = $('.main-content').find('#contact').closest('.l-section'),
+        nextPos = $('.main-content').children().index(targetSection);
+
+    if (nextPos === -1) {
+      // fallback: go to last item
+      nextPos = lastItem;
+    }
+
+    updateNavs(nextPos);
+    updateContent(curPos, nextPos, lastItem);
+  });
+
   // swipe support for touch devices
   var targetElement = document.getElementById('viewport'),
       mc = new Hammer(targetElement);
@@ -160,6 +179,13 @@ $( document ).ready(function() {
     }
     else {
       $('.header--cta').removeClass('is-active');
+    }
+
+    // show main icon only on Projects page (index 1)
+    if (nextPos === 1) {
+      $('.main-icon').addClass('is-visible');
+    } else {
+      $('.main-icon').removeClass('is-visible');
     }
 
   }
@@ -285,6 +311,94 @@ $( document ).ready(function() {
     });
 
   }
+
+  // initialize features
+  // Project expand handlers: on click expand one slider item, hide others, show full description
+  function projectExpandHandlers() {
+
+    $('.work .slider--item').on('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var $item = $(this);
+      if ($item.hasClass('is-expanded')) return;
+      // hide other items
+      $('.work .slider--item').not($item).addClass('is-hidden').removeClass('is-expanded');
+      // expand clicked item
+      $item.addClass('is-expanded').removeClass('is-hidden');
+      // hide title, description and the thumbnail image for the expanded item
+      $item.find('.slider--item-title, .slider--item-description').hide();
+      $item.find('.slider--item-image').hide();
+      // hide the right-side thumbnail and the next arrow to match 'slider--item-left' behavior
+      $('.work .slider--item.slider--item-right').find('.slider--item-image').hide();
+      $('.work--lockup .slider--next').hide();
+
+      // populate the project hero area (top of Projects page)
+      var $link = $item.find('a').first();
+      var title = $link.find('.slider--item-title').text() || '';
+      var desc = $link.find('.slider--item-description').text() || '';
+      var imgSrc = $link.find('.slider--item-image img').attr('src') || '';
+
+      var $hero = $('.project-hero');
+      $hero.find('.project-hero-image').css('background-image','url("'+imgSrc+'")');
+      $hero.find('.project-hero-caption').text('tutaj link do zdjecia');
+      $hero.find('.project-hero-description').text(desc || 'tutaj opis');
+      $hero.attr('aria-hidden','false').addClass('is-visible');
+
+      // ensure Projects page is visible (if user clicked slider from other context)
+      var curActive = $('.side-nav').find('.is-active'),
+          curPos = $('.side-nav').children().index(curActive),
+          lastItem = $('.side-nav').children().length - 1,
+          projPos = 1;
+      updateNavs(projPos);
+      updateContent(curPos, projPos, lastItem);
+
+      // scroll Projects section so hero appears under header (slight offset)
+      var $work = $('.work');
+      // mark work as open to hide heading/left-arrow and shrink right image
+      $work.addClass('project-open');
+      $('html, body').animate({scrollTop: $work.offset().top - 80}, 400);
+    });
+
+    // Close expanded project
+    $(document).on('click', '.close-project', function(e){
+      e.stopPropagation();
+      var $item = $(this).closest('.slider--item');
+      $item.removeClass('is-expanded');
+      // show titles/descriptions again when closing
+      $item.find('.slider--item-title, .slider--item-description').show();
+      // restore all thumbnails and navigation controls
+      $('.work .slider--item').find('.slider--item-image').show();
+      $('.work--lockup .slider--next').show();
+      $('.work .slider--item').removeClass('is-hidden');
+      $('.project-hero').attr('aria-hidden','true').removeClass('is-visible');
+      $('.work').removeClass('project-open');
+      $(this).remove();
+    });
+
+    // Clicking outside closes expanded project
+    $(document).on('click', function(e){
+      if ($(e.target).closest('.slider--item.is-expanded').length === 0){
+          if ($('.slider--item.is-expanded').length){
+            $('.slider--item.is-expanded').each(function(){
+              // restore titles/descriptions and thumbnails for items being collapsed
+              $(this).find('.slider--item-title, .slider--item-description').show();
+              $('.work .slider--item').find('.slider--item-image').show();
+              $(this).removeClass('is-expanded');
+            });
+            $('.work .slider--item').removeClass('is-hidden');
+            $('.close-project').remove();
+            $('.project-hero').attr('aria-hidden','true').removeClass('is-visible');
+            $('.work').removeClass('project-open');
+            // restore global UI elements (thumbnails + next arrow)
+            $('.work .slider--item').find('.slider--item-image').show();
+            $('.work--lockup .slider--next').show();
+          }
+      }
+    });
+
+  }
+
+  projectExpandHandlers();
 
   outerNav();
   workSlider();

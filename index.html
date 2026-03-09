@@ -9,11 +9,12 @@
   <meta name="keywords" content="template, html, sass, jquery">
   <meta name="author" content="Oliwer Kubiak">
   <link rel="stylesheet" href="assets/css/main.css">
+   <link rel="stylesheet" href="assets/css/countdown.css">
   <link rel="icon" type="image/x-icon" href="assets/img/favicon.png">
 </head>
 <body>
 
-<!-- notification for small viewports and landscape oriented smartphones -->
+
 <div class="device-notification">
   <a class="device-notification--logo" href="#0">
     <img src="assets/img/logo.png" alt="Oliwer">
@@ -28,7 +29,7 @@
       <div class="l-wrapper">
         <header class="header">
           <a class="header--logo" href="#home">
-            <img src="assets/img/logo.png" alt="oli"> <!--change it-->
+            <img src="assets/img/logo.png" alt="oli"> 
             <p>Oliwer Kubiak</p>
           </a>
           <button class="header--cta cta">Contact me</button>
@@ -58,12 +59,13 @@
                   </svg>
                   <span class="btn-background"></span>
                 </button>
+                
                 <img src="assets/img/introduction-visual.png" alt="Welcome">
               </div>
               <div class="intro--options">
                 <a href="#0">
-                  <h3>Metiew &amp; Smith</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
+                  <h3>Project &amp; HomeLab</h3>
+                  <p>A self-hosted homelab environment built on a repurposed computer running Proxmox...</p>
                 </a>
                 <a href="#0">
                   <h3>Fantasy interactive</h3>
@@ -78,7 +80,14 @@
           </li>
           <li class="l-section section">
             <div class="work">
-              <h2>Projects</h2>
+                <div class="project-hero" aria-hidden="true">
+                  <div class="project-hero-inner">
+                    <div class="project-hero-image"></div>
+                    <p class="project-hero-caption">tutaj link do zdjecia</p>
+                    <p class="project-hero-description">tutaj opis</p>
+                  </div>
+                </div>
+                <h2>Projects</h2>
               <div class="work--lockup">
                 <ul class="slider">
                   <li class="slider--item slider--item-left">
@@ -95,8 +104,8 @@
                       <div class="slider--item-image">
                         <img src="assets/img/work-metiew-smith.jpg" alt="Metiew and Smith">
                       </div>
-                      <p class="slider--item-title">Metiew &amp; Smith</p>
-                      <p class="slider--item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do.</p>
+                      <p class="slider--item-title">Project &amp; HomeLab</p>
+                      <p class="slider--item-description">hosting containers such as TrueNAS, Ubuntu, and a Caddy reverse proxy. The infrastructure is designed for scalability with future RAM and storage expansion, while Caddy serves a personal website (the one you are reading now) and provides secure, flexible access to services hosted within the lab.</p>
                     </a>
                   </li>
                   <li class="slider--item slider--item-right">
@@ -132,43 +141,27 @@
           <li class="l-section section">
             <div class="about">
               <div class="about--banner">
-                <h2>We<br>believe in<br>passionate<br>people</h2>
-                <a href="#0">Career
-                  <span>
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
-                    <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
-                      <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
-                    </g>
-                    </svg>
-                  </span>
-                </a>
-                <img src="assets/img/about-visual.png" alt="About Us">
+                <div class="about--center">
+                  <h2>Building in progress</h2>
+                   <div id="countdown"></div>
+                  
+                </div>
               </div>
-              <div class="about--options">
-                <a href="#0">
-                  <h3>Winners</h3>
-                </a>
-                <a href="#0">
-                  <h3>Philosophy</h3>
-                </a>
-                <a href="#0">
-                  <h3>History</h3>
-                </a>
-              </div>
+              
             </div>
           </li>
           <li class="l-section section">
-            <div class="contact">
+            <div id="contact" class="contact">
               <div class="contact--lockup">
                 <div class="modal">
                   <div class="modal--information">
-                    <p>Pawia 5, 31-154 Kraków, Poland</p>
-                    <a href="mailto:ouremail@gmail.com">kontakt@oliwerkubial.pl</a>
-                    <a href="tel:+148126287560">+48 795 010 816</a>
+                    <p>Łask, Poland 98-100 </p>
+                    <a href="mailto:kontakt@oliwerkubiak.pl">kontakt@oliwerkubiak.pl</a>
+                    <a href="tel:+48795010816">+48 795 010 816</a>
                   </div>
                   <ul class="modal--options">
                     <li><a href="https://discord.gg/bDEyY8qA">Discord</a></li>
-                    <li><a href="">GitHub</a></li>
+                    <li><a href="https://github.com/Ev1l0">GitHub</a></li>
                     <li><a href="mailto:kontakt@oliwerkubiak.pl">Contact Us</a></li>
                   </ul>
                 </div>
@@ -178,11 +171,10 @@
           <li class="l-section section">
             <div class="hire">
               <h2>What would you like to contact me about?</h2>
-              <!-- checkout formspree.io for easy form setup -->
-              <form class="work-request">
+              <form class="work-request" action="https://formspree.io/f/xzdjdopo" method="POST">
                 <div class="work-request--options">
                   <span class="options-a">
-                    <input id="opt-1" type="checkbox" value="app design">
+                    <input id="opt-1" type="checkbox" name="reason[]" value="Job">
                     <label for="opt-1">
                       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                       viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
@@ -192,7 +184,7 @@
                       </svg>
                       Job
                     </label>
-                    <input id="opt-2" type="checkbox" value="graphic design">
+                    <input id="opt-2" type="checkbox" name="reason[]" value="Projects">
                     <label for="opt-2">
                       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                       viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
@@ -202,7 +194,7 @@
                       </svg>
                       Projects
                     </label>
-                    <input id="opt-3" type="checkbox" value="motion design">
+                    <input id="opt-3" type="checkbox" name="reason[]" value="Other">
                     <label for="opt-3">
                       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                       viewBox="0 0 150 111" style="enable-background:new 0 0 150 111;" xml:space="preserve">
@@ -216,18 +208,19 @@
                   </div>
                 <div class="work-request--information">
                   <div class="information-name">
-                    <input id="name" type="text" spellcheck="false">
+                    <input id="name" name="name" type="text" spellcheck="false">
                     <label for="name">Name</label>
                   </div>
                   <div class="information-email">
-                    <input id="email" type="email" spellcheck="false">
+                    <input id="email" name="email" type="email" spellcheck="false">
                     <label for="email">Email</label>
                   </div>
                 </div>
                 <input type="submit" value="Send Request">
               </form>
               <br>
-             <h2> Or use Contact details below</h2>
+             <h2> Or use Contact details 
+            <br> <a href="#contact" class="contact--goto">Here</a> </h2>
                 <footer class="footer">
                   © 2026 Oliwer Kubiak. All rights reserved.
                 </footer>
@@ -249,9 +242,11 @@
     <li>Contact Me</li>
   </ul>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <img class="main-icon" src="assets/img/logo.png" alt="main icon">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
 <script src="assets/js/vendor/hammer-2.0.8.js"></script>
+  <script src="assets/js/countdown.js"></script>
 <script src="assets/js/functions.js"></script>
 </body>
 </html>
