@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Service - Oliwer Kubiak</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Computer repair and IT services">
+  <meta name="keywords" content="computer repair, IT services, laptop repair, technical support">
+  <meta name="author" content="Oliwer Kubiak">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.png">
+  <style>
+    /* Service page specific styles */
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .service-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .back-link:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .technician-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
+    }
+    
+    .technician-photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 30px;
+      border: 4px solid #667eea;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+    
+    .technician-details h2 {
+      margin: 0 0 10px 0;
+      color: #333;
+      font-size: 28px;
+    }
+    
+    .technician-details p {
+      margin: 8px 0;
+      color: #666;
+      font-size: 16px;
+    }
+    
+    .technician-details strong {
+      color: #667eea;
+      font-weight: 700;
+    }
+    
+    .service-form {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
+    }
+    
+    .form-group {
+      margin-bottom: 25px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+      font-size: 16px;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: #fff;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      transform: translateY(-1px);
+    }
+    
+    .form-group textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+    
+    .service-options {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+    
+    .service-option {
+      flex: 1;
+      min-width: 200px;
+      padding: 20px;
+      border: 2px solid #e9ecef;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      background: #fff;
+    }
+    
+    .service-option:hover {
+      border-color: #667eea;
+      background: #f8f9ff;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+    }
+    
+    .service-option input {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    
+    .service-option strong {
+      display: block;
+      color: #667eea;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    
+    .submit-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 16px 40px;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .service-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      border: 2px solid #e9ecef;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+    
+    .service-card:hover {
+      border-color: #667eea;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+    }
+    
+    .service-card h4 {
+      margin: 0 0 10px 0;
+      color: #667eea;
+      font-size: 18px;
+    }
+    
+    .service-card p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    
+    .thank-you-message {
+      margin-top: 30px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .form-group label {
+      color: #333 !important;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      color: #333 !important;
+    }
+    
+    .service-info {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      border: 2px solid #e9ecef;
+      text-align: center;
+    }
+    
+    .service-info h3 {
+      margin: 0 0 10px 0;
+      color: #667eea;
+      font-size: 20px;
+    }
+    
+    .service-info p {
+      margin: 5px 0;
+      color: #333;
+      font-size: 16px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="service-container">
+    <a href="index.html" class="back-link">← Back to Main Site</a>
+    
+    <div class="service-info">
+      <h3>Uwaga!</h3>
+      <p>✅ Konsultacje przy każdej płatnej usłudze są darmowe</p>
+      <p>🚗 Dojazd na terenie Łasku, Pabianic i Łodzi jest darmowy</p>
+    </div>
+
+    <div class="technician-info">
+      <div class="technician-photo">
+        <!-- Placeholder for photo - will be replaced with actual image -->
+        <span>Photo coming soon</span>
+      </div>
+      <div class="technician-details">
+        <h2>Oliwer Kubiak</h2>
+        <p><strong>Technik Informatyk</strong></p>
+        <p>Student 4 semestru Cyberbezpieczeństwa</p>
+        <p><strong>Doświadczenie:</strong> 3-letni staż w składaniu, serwisowaniu i diagnozowaniu komputerów oraz laptopów</p>
+      </div>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <h4>🔧 Naprawa sprzętu</h4>
+        <p>Diagnoza i naprawa komputerów stacjonarnych oraz laptopów. Wymiana podzespołów, czyszczenie, upgrade.</p>
+      </div>
+      <div class="service-card">
+        <h4>💻 Instalacja oprogramowania</h4>
+        <p>Instalacja systemów operacyjnych, programów, sterowników. Konfiguracja i optymalizacja systemu.</p>
+      </div>
+      <div class="service-card">
+        <h4>🌐 Pomoc zdalna</h4>
+        <p>Profesjonalna pomoc przez Internet. Rozwiązywanie problemów z systemem, programami, bezpieczeństwem.</p>
+      </div>
+      <div class="service-card">
+        <h4>📡 Sieci i internet</h4>
+        <p>Konfiguracja routerów, sieci domowych, rozwiązywanie problemów z połączeniem internetowym.</p>
+      </div>
+      <div class="service-card">
+        <h4>🛡️ Bezpieczeństwo</h4>
+        <p>Instalacja i konfiguracja antywirusów, zabezpieczenie systemu, usuwanie wirusów i programów szpiegujących.</p>
+      </div>
+      <div class="service-card">
+        <h4>📊 Przenoszenie danych</h4>
+        <p>Przenoszenie danych między komputerami, kopiowanie zapasowe, odzyskiwanie utraconych danych.</p>
+      </div>
+    </div>
+    
+    <div class="service-form">
+      <h2 style="margin-top: 0; color: #333;">Formularz zgłoszenia problemu</h2>
+      <form action="https://formspree.io/f/xzdjdopo" method="POST">
+        <input type="hidden" name="service_request" value="true">
+        
+        <div class="form-group">
+          <label for="name">Imię i nazwisko:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Adres e-mail:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Numer telefonu:</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Preferowana forma kontaktu:</label>
+          <div class="service-options">
+            <label class="service-option">
+              <input type="radio" name="contact_method" value="zdalnie" required>
+              <strong>Zdalnie</strong><br>
+              <span style="font-size: 12px; color: #666;">Pomoc przez Telefon lub internet</span>
+            </label>
+            <label class="service-option">
+              <input type="radio" name="contact_method" value="z_dojazdem">
+              <strong>Z dojazdem</strong><br>
+              <span style="font-size: 12px; color: #666;">Wizyta u klienta</span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="problem">Opis problemu:</label>
+          <textarea id="problem" name="problem" placeholder="Proszę szczegółowo opisać problem, z którym się zgłaszasz..." required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="urgency">Pilność:</label>
+          <select id="urgency" name="urgency">
+            <option value="normalna">Normalna</option>
+            <option value="pilna">Pilna</option>
+            <option value="bardzo_pilna">Bardzo pilna</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="device_type">Typ urządzenia:</label>
+          <select id="device_type" name="device_type">
+            <option value="laptop">Laptop</option>
+            <option value="komputer_stacjonarny">Komputer stacjonarny</option>
+            <option value="tablet">Tablet</option>
+            <option value="smartfon">Smartfon</option>
+            <option value="inne">Inne</option>
+          </select>
+        </div>
+        
+        <button type="submit" class="submit-btn">Wyślij zgłoszenie</button>
+      </form>
+    </div>
+    
+    <div style="margin-top: 30px; text-align: center; color: #666; font-size: 14px;">
+      <p>Dziękuję za skorzystanie z moich usług. Skontaktuję się z Tobą wkrótce!</p>
+    </div>
+  </div>
+</body>
+</html>

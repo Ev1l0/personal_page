@@ -11,6 +11,77 @@
   <link rel="stylesheet" href="assets/css/main.css">
    <link rel="stylesheet" href="assets/css/countdown.css">
   <link rel="icon" type="image/x-icon" href="assets/img/favicon.png">
+  <style>
+    .service-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+      border: none !important;
+      margin-left: 8% !important;
+      animation: pulse 2s infinite;
+     
+      display: inline-block !important;
+      padding: 6px 30px !important;
+      font-size: 16px !important;
+      line-height: 1.2 !important;
+      text-align: center !important;
+      text-decoration: none !important;
+      cursor: pointer !important;
+      border-radius: 2px !important;
+      transition: all 0.3s ease !important;
+    }
+    
+    .service-btn:hover {
+      animation: none;
+      transform: scale(1.05) !important;
+      
+    }
+    
+    /* Add pulsing animation to the main Contact Me button */
+    .intro--banner button.cta {
+      animation: pulse 2s infinite;
+      /*box-shadow: 0 0 15px rgba(189, 1, 186, 0.4); */
+      transition: all 0.3s ease;
+    }
+    
+    .intro--banner button.cta:hover {
+      animation: none;
+      transform: scale(1.05);
+     /* box-shadow: 0 0 25px rgba(189, 1, 186, 0.6);*/
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+       
+      }
+      50% {
+        transform: scale(1.05);
+        
+      }
+      100% {
+        transform: scale(1);
+        
+      }
+    }
+    
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+    }
+    
+    .header--logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .header--cta-container {
+      display: flex;
+      align-items: center;
+    }
+  </style>
 </head>
 <body>
 
@@ -32,7 +103,10 @@
             <img src="assets/img/logo.png" alt="oli"> 
             <p>Oliwer Kubiak</p>
           </a>
-          <button class="header--cta cta">Contact me</button>
+          <div class="header--cta-container">
+            <button class="header--cta cta">Contact me</button>
+            <a href="service.html" class="header--cta cta service-btn">Service</a>
+          </div>
           <div class="header--nav-toggle">
             <span></span>
           </div>
@@ -51,6 +125,7 @@
             <div class="intro">
               <div class="intro--banner">
                 <h1>Your next<br>interactive<br>experience</h1>
+                <a href="service.html" class="header--cta cta service-btn">SERWIS</a>
                 <button class="cta">Contact Me
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
                   <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
