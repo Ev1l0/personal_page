@@ -32,44 +32,6 @@
         display: none
         text-align: center
 
-        &.is-expanded
-          position: relative
-          display: block
-          width: 100%
-          transform: translateY(0)
-          z-index: 5
-          opacity: 1
-          transition: transform .4s ease, opacity .4s ease
-
-          .full-description
-            display: block
-            opacity: 1
-            transform: translateY(0)
-            transition: opacity .4s .1s ease, transform .4s .1s ease
-
-        &.is-hidden
-          opacity: 0
-          transform: scale(.98) translateY(20px)
-          pointer-events: none
-          transition: opacity .4s ease, transform .4s ease
-
-      .full-description
-        display: none
-        opacity: 0
-        transform: translateY(20px)
-        transition: opacity .3s ease, transform .3s ease
-
-      .close-project
-        display: inline-block
-        margin-top: 20px
-        padding: 10px 14px
-        background-color: $highlight
-        color: $white
-        border: none
-        cursor: pointer
-        font-weight: 700
-        text-transform: uppercase
-
         a
           text-decoration: none
           color: #858585
@@ -214,3 +176,53 @@
           &-left,
           &-right
             display: none
+.work
+  .slider
+    .slider--item
+      &.is-expanded
+        position: relative
+        display: block
+        width: 100%
+        transform: translateY(0)
+        z-index: 5
+        opacity: 1
+        transition: transform .4s ease, opacity .4s ease
+
+        .full-description
+          display: block
+          opacity: 1
+          transform: translateY(0)
+          transition: opacity .4s .1s ease, transform .4s .1s ease
+
+      &.is-hidden
+        opacity: 0
+        transform: scale(.98) translateY(20px)
+        pointer-events: none
+        transition: opacity .4s ease, transform .4s ease
+
+    .full-description
+      display: none
+      opacity: 0
+      transform: translateY(20px)
+      transition: opacity .3s ease, transform .3s ease
+
+    .close-project
+      display: inline-block
+      margin-top: 20px
+      padding: 10px 14px
+      background-color: #bd01ba
+      color: #fff
+      border: none
+      cursor: pointer
+      font-weight: 700
+      text-transform: uppercase
+
+  &.project-open
+    .work--lockup
+      .slider--item
+        .slider--item-image
+          display: none !important
+
+        &.is-expanded
+          .slider--item-image
+            display: none !important

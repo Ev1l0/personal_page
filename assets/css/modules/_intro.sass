@@ -54,7 +54,7 @@
         left: 23px
         right: 0
         height: 100%
-        background-color: $highlight
+          background-color: $highlight
         z-index: -1
         transition: left .2s ease-in-out
 
@@ -75,7 +75,77 @@
       position: absolute
       bottom: 21px
       right: -12px
+/* Feature photos placed under Contact button, centered */
+/* Project hero (visible when a project is expanded) */
+.project-hero
+  display: none
+  width: 100%
+  margin: 0 0 20px 0
+  text-align: center
+  transition: transform 0.35s ease, opacity 0.3s ease
+  z-index: 5
 
+  &.is-visible
+    display: block
+    opacity: 1
+    transform: translateY(0)
+
+  &-inner
+    max-width: 720px
+    margin: 0 auto
+
+  &-image
+    width: 100%
+    height: auto
+    min-height: 220px
+    background-size: cover
+    background-position: center center
+    border-radius: 4px
+
+  &-caption
+    margin: 8px 0 0 0
+    color: #bd01ba
+    font-weight: 700
+
+  &-description
+    margin: 12px 0 0 0
+    color: #bdbdbd
+
+
+/* When a single project is opened */
+.work
+  &.project-open
+    h2
+      display: none
+
+    .slider--prev
+      display: none
+
+    /* shrink the right-side project logo/image when a project is open */
+    .slider--item-right
+      .slider--item-image
+        img
+          transform: scale(0.5)
+          transform-origin: right center
+          transition: transform 0.25s ease
+
+
+/* Floating main icon fixed to bottom-right */
+.main-icon
+  position: fixed
+  right: 20px
+  bottom: 20px
+  width: 64px
+  height: auto
+  z-index: 30
+  opacity: 0
+  visibility: hidden
+  transition: opacity 0.25s ease, visibility 0s 0.25s
+
+  &.is-visible
+    opacity: 1
+    visibility: visible
+    transition: opacity 0.25s ease
   &--options
     display: flex
     justify-content: space-between

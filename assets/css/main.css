@@ -463,7 +463,7 @@ body {
 .header--cta {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 41%;
   transform: translate(-50%, -50%);
   padding: 0 20px;
   line-height: 30px;
@@ -682,7 +682,9 @@ body {
 .work.project-open .slider--prev {
   display: none;
 }
-/* shrink the right-side project logo/image when a project is open */
+.work.project-open {
+  /* shrink the right-side project logo/image when a project is open */
+}
 .work.project-open .slider--item-right .slider--item-image img {
   transform: scale(0.5);
   transform-origin: right center;
@@ -706,27 +708,27 @@ body {
   visibility: visible;
   transition: opacity 0.25s ease;
 }
-.intro--options {
+.main-icon--options {
   display: flex;
   justify-content: space-between;
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.intro--options > a {
+.main-icon--options > a {
   max-width: 250px;
   text-decoration: none;
   color: #282828;
   transition: color 0.2s ease-in-out;
 }
-.intro--options > a:hover {
+.main-icon--options > a:hover {
   color: #fff;
 }
-.intro--options h3 {
+.main-icon--options h3 {
   font-size: 16px;
   text-transform: uppercase;
 }
-.intro--options p {
+.main-icon--options p {
   margin-bottom: 0;
 }
 
@@ -952,6 +954,51 @@ body {
     display: none;
   }
 }
+.work .slider .slider--item.is-expanded {
+  position: relative;
+  display: block;
+  width: 100%;
+  transform: translateY(0);
+  z-index: 5;
+  opacity: 1;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.work .slider .slider--item.is-expanded .full-description {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s 0.1s ease, transform 0.4s 0.1s ease;
+}
+.work .slider .slider--item.is-hidden {
+  opacity: 0;
+  transform: scale(0.98) translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.work .slider .full-description {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.work .slider .close-project {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 14px;
+  background-color: #bd01ba;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.work.project-open .work--lockup .slider--item .slider--item-image {
+  display: none !important;
+}
+.work.project-open .work--lockup .slider--item.is-expanded .slider--item-image {
+  display: none !important;
+}
+
 .about {
   position: relative;
   display: flex;
@@ -1041,7 +1088,7 @@ body {
   bottom: -90px;
   right: -12px;
 }
-/* center a simple build-in-progress message */
+
 .about--banner .about--center {
   display: flex;
   align-items: center;
@@ -1061,7 +1108,7 @@ body {
   font-weight: 700;
   text-transform: uppercase;
 }
-.about--options {
+.about--banner--options {
   display: flex;
   max-width: 600px;
   justify-content: space-between;
@@ -1069,7 +1116,7 @@ body {
   padding: 0;
   list-style: none;
 }
-.about--options > a {
+.about--banner--options > a {
   position: relative;
   width: 150px;
   height: 75px;
@@ -1080,19 +1127,10 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
-.about--options > a:nth-child(1) {
-  background-image: url("../img/about-winners.jpg");
-}
-.about--options > a:nth-child(2) {
-  background-image: url("../img/about-philosophy.jpg");
-}
-.about--options > a:nth-child(3) {
-  background-image: url("../img/about-history.jpg");
-}
-.about--options > a:hover h3 {
+.about--banner--options > a:hover h3 {
   bottom: -50px;
 }
-.about--options h3 {
+.about--banner--options h3 {
   position: absolute;
   bottom: -38px;
   left: 10px;
@@ -1235,6 +1273,25 @@ body {
   font-weight: 700;
 }
 
+.contact--goto {
+  display: inline-block;
+  width: 400px;
+  max-width: 100%;
+  line-height: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: #bd01ba;
+  border: none;
+  border-radius: 0;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+}
+.contact--goto:focus {
+  outline: none;
+}
+
 .hire {
   position: relative;
   display: flex;
@@ -1277,23 +1334,6 @@ body {
 .work-request input[type=submit]:focus {
   outline: none;
 }
-/* style the contact anchor to match the Send Request button */
-.contact--goto {
-  display: inline-block;
-  width: 400px;
-  max-width: 100%;
-  line-height: 50px;
-  font-size: 16px;
-  font-weight: 700;
-  text-transform: uppercase;
-  background-color: #bd01ba;
-  border: none;
-  border-radius: 0;
-  color: #fff;
-  text-align: center;
-  text-decoration: none;
-}
-.contact--goto:focus { outline: none; }
 .work-request--options {
   display: flex;
   width: 100%;
@@ -1548,54 +1588,6 @@ footer.footer p {
 }
 .outer-nav li.is-vis:nth-child(2) {
   transition-delay: 0.04s;
-}
-/* Slider expand/hide styles (added) */
-.work .slider .slider--item.is-expanded {
-  position: relative;
-  display: block;
-  width: 100%;
-  transform: translateY(0);
-  z-index: 5;
-  opacity: 1;
-  transition: transform .4s ease, opacity .4s ease;
-}
-.work .slider .slider--item.is-expanded .full-description {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity .4s .1s ease, transform .4s .1s ease;
-}
-.work .slider .slider--item.is-hidden {
-  opacity: 0;
-  transform: scale(.98) translateY(20px);
-  pointer-events: none;
-  transition: opacity .4s ease, transform .4s ease;
-}
-.work .slider .full-description {
-  display: none;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity .3s ease, transform .3s ease;
-}
-.work .slider .close-project {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 14px;
-  background-color: #bd01ba;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-/* When a project is opened, hide the circular thumbnails (right/left)
-   but keep the expanded item's image visible */
-.work.project-open .work--lockup .slider--item .slider--item-image {
-  display: none !important;
-}
-.work.project-open .work--lockup .slider--item.is-expanded .slider--item-image {
-  /* previously forced expanded item's image visible; keep hidden now */
-  display: none !important;
 }
 .outer-nav li.is-vis:nth-child(3) {
   transition-delay: 0.08s;
