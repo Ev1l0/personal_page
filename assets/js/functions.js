@@ -231,8 +231,6 @@ $( document ).ready(function() {
           $right = $('.slider--item-right'),
           $item = $('.slider--item');
 
-      $('.slider').animate({ opacity : 0 }, 400);
-
       setTimeout(function(){
 
       if ($this.hasClass('slider--next')) {
@@ -286,7 +284,7 @@ $( document ).ready(function() {
 
     }, 400);
 
-    $('.slider').animate({ opacity : 1 }, 400);
+    $('.slider').css('opacity', '1');
 
     });
 
@@ -356,7 +354,7 @@ $( document ).ready(function() {
       var $work = $('.work');
       // mark work as open to hide heading/left-arrow and shrink right image
       $work.addClass('project-open');
-      $('html, body').animate({scrollTop: $work.offset().top - 80}, 400);
+      window.scrollTo(0, $work.offset().top - 80);
     });
 
     // Close expanded project
@@ -399,6 +397,28 @@ $( document ).ready(function() {
   }
 
   projectExpandHandlers();
+
+  // Intro options click handler - hide other items in place
+  function introOptionsHandler() {
+    $('.intro--options > a').on('click', function(e) {
+      e.preventDefault();
+      var $clicked = $(this);
+      
+      // If already selected, deselect all and show all
+      if ($clicked.hasClass('is-selected')) {
+        $('.intro--options > a').removeClass('is-selected is-hidden');
+        return;
+      }
+      
+      // Hide all other items immediately (no animation)
+      $('.intro--options > a').not($clicked).addClass('is-hidden').removeClass('is-selected');
+      
+      // Mark clicked item as selected
+      $clicked.addClass('is-selected').removeClass('is-hidden');
+    });
+  }
+  
+  introOptionsHandler();
 
   outerNav();
   workSlider();

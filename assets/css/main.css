@@ -491,6 +491,38 @@ body {
   }
 }
 
+.contact-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: none !important;
+  animation: pulse 2s infinite;
+  display: inline-block !important;
+  padding: 6px 30px !important;
+  font-size: 16px !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  border-radius: 2px !important;
+  transition: all 0.3s ease !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.contact-btn:hover {
+  animation: none;
+  transform: scale(1.05) !important;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .side-nav {
   position: relative;
   display: flex;
@@ -616,7 +648,7 @@ body {
   left: 23px;
   right: 0;
   height: 100%;
-  background-color: #bd01ba;
+  height-background-color: #bd01ba;
   z-index: -1;
   transition: left 0.2s ease-in-out;
 }
@@ -645,13 +677,10 @@ body {
   width: 100%;
   margin: 0 0 20px 0;
   text-align: center;
-  transition: transform 0.35s ease, opacity 0.3s ease;
   z-index: 5;
 }
 .project-hero.is-visible {
   display: block;
-  opacity: 1;
-  transform: translateY(0);
 }
 .project-hero-inner {
   max-width: 720px;
@@ -971,9 +1000,8 @@ body {
 }
 .work .slider .slider--item.is-hidden {
   opacity: 0;
-  transform: scale(0.98) translateY(20px);
   pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.4s ease;
 }
 .work .slider .full-description {
   display: none;
